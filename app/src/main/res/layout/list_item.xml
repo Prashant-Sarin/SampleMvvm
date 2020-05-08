@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?><!--starts with layout tag for enabling data binding for this layout-->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <!--creating a variable to refer repo -->
+        <variable
+            name="gitRepo"
+            type="com.sample.samplemvvm.models.GitRepositoryModel" />
+        <!--creating a variable to refer clickListener-->
+        <variable
+            name="clickListener"
+            type="com.sample.samplemvvm.listeners.CustomClickListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> clickListener.onItemClick(gitRepo)}"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:weightSum="10">
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            app:profileImage="@{gitRepo.owner.avatar_url}" />
+
+        <TextView
+            android:id="@+id/tv_repo_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="8"
+            android:text="@{gitRepo.name}"
+            android:textSize="32dp" />
+
+    </LinearLayout>
+</layout>
